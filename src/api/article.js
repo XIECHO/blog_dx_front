@@ -1,37 +1,37 @@
-import request from "@/utils/request";
+import service from "@/utils/request";
 
-export function getList(params) {
-  return request({
-    url: "/api/article/list",
+export function GetList(params) {
+  return service.request({
     method: "get",
+    url: "/article/list",
     params
   });
 }
 
-export function getSingle(id) {
-  return request({
-    url: `/articles/single?_id=${id}`,
+export function GetSingle(id) {
+  return service.request({
+    url: `/article/single?_id=${id}`,
     method: "get"
   });
 }
 
-export function getPrev(date) {
-  return request({
-    url: `/articles/prev?date=${date}`,
+export function GetPrev(date) {
+  return service.request({
+    url: `/article/prev?date=${date}`,
     method: "get"
   });
 }
 
-export function getNext(date) {
-  return request({
-    url: `/articles/next?date=${date}`,
+export function GetNext(date) {
+  return service.request({
+    url: `/article/next?date=${date}`,
     method: "get"
   });
 }
 
-export function getListByType(type, params) {
-  return request({
-    url: `/articles/${type}`,
+export function GetListByType(type, params) {
+  return service.request({
+    url: `/article/${type}`,
     method: "get",
     params
   });

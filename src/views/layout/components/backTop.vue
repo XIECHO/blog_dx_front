@@ -10,7 +10,6 @@
 <script>
 export default {
   name: "BackTop",
-  props: {},
   data() {
     return {
       width: "0%"
@@ -65,7 +64,7 @@ export default {
   height: 32px;
   border-bottom: 4px solid #333;
   opacity: 0.8;
-  background: url(../../assets/tree.png) repeat-x;
+  background: url(../../../assets/tree.png) repeat-x;
   background-size: 83px 30px;
   background-clip: content-box;
   cursor: pointer;

@@ -1,9 +1,9 @@
 <template>
   <div ref="headWrapper" class="head-wrapper">
     <div class="head-text">
-      <h1 class="title">吴予安</h1>
+      <h1 class="title">XXX</h1>
       <p class="description">自有林中趣 | 谁惊岁去频</p>
-      <img class="logo" src="@/assets/logo.svg" alt="" />
+      <img class="logo" src="@/assets/logo.svg" />
     </div>
     <svg-icon
       icon-class="down"

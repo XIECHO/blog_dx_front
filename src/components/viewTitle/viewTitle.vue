@@ -6,22 +6,22 @@
 
 <script>
 export default {
-  name: 'ViewTitle',
+  name: "ViewTitle",
   props: {
     titleText: {
       type: String,
-      default: '页面标题'
+      default: "页面标题"
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
-  .viewTitle {
-    padding: 30px 0;
-    .title-text {
-      text-align: left;
-      font-size: $font-size-lg;
-    }
+.viewTitle {
+  padding: 30px 0;
+  .title-text {
+    text-align: left;
+    font-size: $font-size-lg;
   }
+}
 </style>

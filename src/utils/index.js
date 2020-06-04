@@ -3,40 +3,40 @@
  * @param {string} date
  */
 export function formatTime(date) {
-  const now = new Date()
-  date = new Date(date)
+  const now = new Date();
+  date = new Date(date);
   // 年
-  const nowYear = now.getFullYear()
-  const dateYear = date.getFullYear()
+  const nowYear = now.getFullYear();
+  const dateYear = date.getFullYear();
   if (nowYear > dateYear) {
-    return Math.floor(nowYear - dateYear) + '年前'
+    return Math.floor(nowYear - dateYear) + "年前";
   }
   // 月
-  const nowMonth = now.getMonth()
-  const dateMonth = date.getMonth()
+  const nowMonth = now.getMonth();
+  const dateMonth = date.getMonth();
   if (nowMonth > dateMonth) {
-    return Math.floor(nowMonth - dateMonth) + '个月前'
+    return Math.floor(nowMonth - dateMonth) + "个月前";
   }
   // 日
-  const nowDay = now.getDate()
-  const dateDay = date.getDate()
+  const nowDay = now.getDate();
+  const dateDay = date.getDate();
   if (nowDay > dateDay) {
-    return Math.floor(nowDay - dateDay) + '天前'
+    return Math.floor(nowDay - dateDay) + "天前";
   }
   // 小时
-  const nowHours = now.getHours()
-  const dateHours = date.getHours
+  const nowHours = now.getHours();
+  const dateHours = date.getHours;
   if (nowHours > dateHours) {
-    return Math.floor(nowHours - dateHours) + '小时前'
+    return Math.floor(nowHours - dateHours) + "小时前";
   }
   // 分
-  const nowMin = now.getMinutes()
-  const dateMin = date.getMinutes()
+  const nowMin = now.getMinutes();
+  const dateMin = date.getMinutes();
   if (nowMin > dateMin) {
-    return Math.floor(nowMin - dateMin) + '分钟前'
+    return Math.floor(nowMin - dateMin) + "分钟前";
   }
   // 时间差小于一分钟
-  return '刚刚'
+  return "刚刚";
 }
 
 /**
@@ -46,26 +46,32 @@ export function formatTime(date) {
  */
 export function formatDate(date, fmt) {
   if (/(y+)/.test(fmt)) {
-    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
+    fmt = fmt.replace(
+      RegExp.$1,
+      (date.getFullYear() + "").substr(4 - RegExp.$1.length)
+    );
   }
   const o = {
-    'M+': date.getMonth() + 1,
-    'd+': date.getDate(),
-    'h+': date.getHours(),
-    'm+': date.getMinutes(),
-    's+': date.getSeconds()
-  }
+    "M+": date.getMonth() + 1,
+    "d+": date.getDate(),
+    "h+": date.getHours(),
+    "m+": date.getMinutes(),
+    "s+": date.getSeconds()
+  };
   for (const k in o) {
     if (new RegExp(`(${k})`).test(fmt)) {
-      const str = o[k] + ''
-      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str))
+      const str = o[k] + "";
+      fmt = fmt.replace(
+        RegExp.$1,
+        RegExp.$1.length === 1 ? str : padLeftZero(str)
+      );
     }
   }
-  return fmt
+  return fmt;
 }
 
 function padLeftZero(str) {
-  return ('00' + str).substr(str.length)
+  return ("00" + str).substr(str.length);
 }
 
 /**
@@ -75,42 +81,42 @@ function padLeftZero(str) {
  * @param {Boolean} immediate
  */
 export function debounce(func, wait, immediate) {
-  var timeout, result
+  var timeout, result;
   var debounced = function() {
-    var context = this
-    var args = arguments
+    var context = this;
+    var args = arguments;
 
-    if (timeout) clearTimeout(timeout)
+    if (timeout) clearTimeout(timeout);
     if (immediate) {
       // 如果已经执行过，不再执行
-      var callNow = !timeout
+      var callNow = !timeout;
       timeout = setTimeout(function() {
-        timeout = null
-      }, wait)
-      if (callNow) result = func.apply(context, args)
+        timeout = null;
+      }, wait);
+      if (callNow) result = func.apply(context, args);
     } else {
       timeout = setTimeout(function() {
-        func.apply(context, args)
-      }, wait)
+        func.apply(context, args);
+      }, wait);
     }
-    return result
-  }
+    return result;
+  };
 
   debounced.cancel = function() {
-    clearTimeout(timeout)
-    timeout = null
-  }
+    clearTimeout(timeout);
+    timeout = null;
+  };
 
-  return debounced
+  return debounced;
 }
 
 // 判断移动端
-let ISMOBILE
+let ISMOBILE;
 
 export function isMobile() {
   if (ISMOBILE !== undefined) {
-    return ISMOBILE
+    return ISMOBILE;
   }
-  ISMOBILE = /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)
-  return ISMOBILE
+  ISMOBILE = /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent);
+  return ISMOBILE;
 }

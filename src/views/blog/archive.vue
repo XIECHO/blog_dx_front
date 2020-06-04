@@ -5,16 +5,14 @@
 </template>
 
 <script>
-import timeLine from '@/components/timeLine/timeLine'
+import timeLine from "@/components/timeLine/timeLine";
 
 export default {
-  name: 'Archived',
+  name: "Archived",
   components: {
     timeLine
   }
-}
+};
 </script>
 
-<style lang="scss" rel="stylesheet/scss">
-
-</style>
+<style lang="scss" rel="stylesheet/scss"></style>

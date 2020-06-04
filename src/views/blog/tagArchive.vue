@@ -5,31 +5,30 @@
 </template>
 
 <script>
-import timeLine from '@/components/timeLine/timeLine'
+import timeLine from "@/components/timeLine/timeLine";
 export default {
-  name: 'TagArchived',
+  name: "TagArchived",
   components: {
     timeLine
   },
   data() {
     return {
-      tag: '',
+      tag: "",
       para: {}
-    }
+    };
   },
   created() {
-    this.tag = this.$route.params.tag
-    this.resetData()
+    this.tag = this.$route.params.tag;
+    this.resetData();
   },
   activated() {
-    this.tag = this.$route.params.tag
-    this.resetData()
+    this.tag = this.$route.params.tag;
+    this.resetData();
   },
   methods: {
     resetData() {
-      this.$set(this.para, 'tag', this.tag)
+      this.$set(this.para, "tag", this.tag);
     }
   }
-}
+};
 </script>
-
