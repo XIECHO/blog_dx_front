@@ -11,6 +11,7 @@ export const childRoutes = [
     meta: {
       keepAlive: true,
       title: "首页",
+      showHeader: true,
       icon: "nav-home"
     }
   },

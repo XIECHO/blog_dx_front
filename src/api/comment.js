@@ -1,12 +1,8 @@
-import request from "@/utils/request";
+import service from "@/utils/request";
 
-/**
- * 获取文章评论列表
- * @param {Number} id 文章Id
- */
 export function GetComment(id) {
-  return request({
-    url: `/comments/get_comments?article_id=${id}`,
+  return service.request({
+    url: `/comment/get_comments?article_id=${id}`,
     method: "get"
   });
 }
@@ -16,8 +12,8 @@ export function GetComment(id) {
  * @param {Object} data 评论数据
  */
 export function SaveComment(data) {
-  return request({
-    url: "comments/save_comment",
+  return service.request({
+    url: "comment/save_comment",
     method: "post",
     data
   });
@@ -28,8 +24,8 @@ export function SaveComment(data) {
  * @param {Object} data 评论数据
  */
 export function SaveFollowComment(data) {
-  return request({
-    url: "comments/save_follow_comment",
+  return service.request({
+    url: "comment/save_follow_comment",
     method: "post",
     data
   });
@@ -40,8 +36,8 @@ export function SaveFollowComment(data) {
  * @param {Object} data 评论数据
  */
 export function RemoveComment(data) {
-  return request({
-    url: "comments/remove_comment",
+  return service.request({
+    url: "comment/remove_comment",
     method: "post",
     data
   });
@@ -52,8 +48,8 @@ export function RemoveComment(data) {
  * @param {Object} data 评论数据
  */
 export function RemoveFollowComment(data) {
-  return request({
-    url: "comments/remove_follow_comment",
+  return service.request({
+    url: "comment/remove_follow_comment",
     method: "post",
     data
   });

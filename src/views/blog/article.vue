@@ -17,7 +17,7 @@
           >
             <svg-icon icon-class="tag" class-name="icon" />
             <span class="text">
-              <router-link :to="{ name: 'tagArchived', params: { tag: tag } }">
+              <router-link :to="{ name: 'tagArchive', params: { tag: tag } }">
                 {{ tag }}
               </router-link>
             </span>
@@ -90,12 +90,6 @@ import comment from "@/components/comment/comment";
 
 export default {
   name: "ArticlePage",
-  filters: {
-    formatDate(time) {
-      const date = new Date(time);
-      return formatDate(date, "yyyy-MM-dd hh:mm");
-    }
-  },
   components: {
     comment
   },
@@ -103,8 +97,8 @@ export default {
     return {
       articleId: "",
       articleData: "",
-      prev: "",
-      next: ""
+      prev: {},
+      next: {}
     };
   },
   computed: {
@@ -127,21 +121,19 @@ export default {
   methods: {
     getData() {
       this.isArticlePageShow = false;
-
+      console.log(this);
       GetSingle(this.articleId)
         .then(res => {
           console.log(res);
           this.articleData = res.data.resData[0];
 
-          // 获取上一篇及下一篇
-          const curDate = this.articleData.date;
-          GetPrev(curDate).then(res => {
-            console.log(res);
-            this.prev = res[0];
+          const date = this.articleData.date;
+          GetPrev(date).then(res => {
+            this.prev = res.data.resData[0];
           });
 
-          GetNext(curDate).then(res => {
-            this.next = res[0];
+          GetNext(date).then(res => {
+            this.next = res.data.resData[0];
           });
 
           // 获取评论
@@ -161,11 +153,16 @@ export default {
       this.getData();
     }
     next();
+  },
+  filters: {
+    formatDate(time) {
+      return formatDate(new Date(time), "yyyy-MM-dd hh:mm");
+    }
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .article {
   text-align: left;
   flex-wrap: nowrap;
@@ -243,7 +240,7 @@ export default {
   .article-catalog {
     position: fixed;
     top: 60px;
-    left: 10px;
+    // left: 10px;
     width: 200px;
     .catalog-title {
       margin-bottom: 10px;

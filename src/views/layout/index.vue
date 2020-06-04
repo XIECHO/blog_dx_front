@@ -3,7 +3,7 @@
     <Cloud />
     <div ref="userBase" class="userBase ts" :class="{ navShow: isNavShow }">
       <transition name="fade-header">
-        <Header />
+        <Header v-if="showHeader" />
       </transition>
       <div class="userBase-content ts" @click="contentClick">
         <transition name="fade-transform" mode="out-in">
@@ -46,6 +46,9 @@ export default {
   computed: {
     isNavShow() {
       return this.$store.state.isNavShow;
+    },
+    showHeader() {
+      return this.$route.meta.showHeader;
     }
   },
   watch: {

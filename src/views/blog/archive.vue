@@ -8,11 +8,9 @@
 import timeLine from "@/components/timeLine/timeLine";
 
 export default {
-  name: "Archived",
+  name: "Archive",
   components: {
     timeLine
   }
 };
 </script>
-
-<style lang="scss" rel="stylesheet/scss"></style>
