@@ -1,23 +1,24 @@
 <template>
   <div>
-    <div class="comment-input" @click.stop="inputClick">
-      <Textarea
-        ref="inputTextarea"
-        v-model="commentValue"
-        class="input-textarea"
-        :autofocus="autofocus"
-        placeholder="说点什么..."
-        @on-focus="textareaFocus"
-      />
-      <div v-show="isControlShow" class="input-control clearfix">
-        <button
-          class="control-commit"
-          :disabled="isCommentValueEmpty ? 'disabled' : false"
-          @click="newCommentClick"
-        >
-          评论
-        </button>
+    <div v-if="isLogin">
+      <div class="comment-input">
+        <Textarea
+          ref="inputTextarea"
+          v-model="commentValue"
+          class="input-textarea"
+          :autofocus="autofocus"
+          placeholder="说点什么..."
+        />
+        <div class="input-control clearfix">
+          <button class="control-commit" @click="newCommentClick">
+            评论
+          </button>
+        </div>
       </div>
+    </div>
+    <div v-else>
+      评论，请
+      <a @click="login">登录</a>
     </div>
   </div>
 </template>
@@ -56,42 +57,16 @@ export default {
   data() {
     return {
       commentValue: "",
-      isControlShow: false
+      isLogin: false
     };
-  },
-  computed: {
-    isCommentValueEmpty() {
-      return this.commentValue.length === 0;
-    }
-  },
-  created() {
-    // 添加 document 的 click 事件， 点击非输入组件部分隐藏输入组件
-    if (this.currentFollowId) {
-      document.addEventListener("click", this.hideInput, false);
-    } else {
-      document.addEventListener("click", this.textareaBlur, false);
-    }
   },
   mounted() {
     if (this.currentFollowId) {
       this.$refs.inputTextarea.focus();
     }
   },
-  beforeDestroy() {
-    // 移除 document 的 click 事件
-    if (this.currentFollowId) {
-      document.removeEventListener("click", this.hideInput, false);
-    } else {
-      document.removeEventListener("click", this.textareaBlur, false);
-    }
-  },
   methods: {
-    textareaFocus() {
-      this.isControlShow = true;
-    },
-    textareaBlur() {
-      this.isCommentValueEmpty && (this.isControlShow = false);
-    },
+    login() {},
     // 发表一级评论
     newCommentClick() {
       const userInfo = this.$store.state.userInfo;
@@ -122,25 +97,10 @@ export default {
           this.commentValue = "";
           this.textareaBlur();
           this.$emit("getComments");
-          // 如果是二级评论 隐藏输入框
-          if (this.currentFollowId) {
-            this.$emit("hideInput");
-          }
         })
         .catch(() => {
           this.$Message.error("评论失败！请稍后再试。");
         });
-    },
-
-    // 隐藏输入框
-    hideInput() {
-      if (!this.commentValue) {
-        this.$emit("hideInput");
-      }
-    },
-    // inputClick
-    inputClick() {
-      return false;
     }
   }
 };
