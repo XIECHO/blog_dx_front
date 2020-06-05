@@ -25,8 +25,8 @@ export const childRoutes = [
     }
   },
   {
-    path: "tagArchived/:tag",
-    name: "tagArchived",
+    path: "tagArchive/:tag",
+    name: "tagArchive",
     hidden: true,
     component: () => import("@/views/blog/tagArchive"),
     meta: {

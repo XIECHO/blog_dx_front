@@ -5,9 +5,7 @@
     :class="{ smallScreen: isSmallScreen }"
   >
     <div class="article-content">
-      <!--标题-->
       <h1 class="title">{{ articleData.title }}</h1>
-      <!--信息-->
       <div class="info">
         <div class="info-row tags">
           <div
@@ -121,10 +119,8 @@ export default {
   methods: {
     getData() {
       this.isArticlePageShow = false;
-      console.log(this);
       GetSingle(this.articleId)
         .then(res => {
-          console.log(res);
           this.articleData = res.data.resData[0];
 
           const date = this.articleData.date;
@@ -138,6 +134,7 @@ export default {
 
           // 获取评论
           this.$nextTick(() => {
+            console.log(this.$refs.comment);
             this.$refs.comment.getComments();
           });
         })
@@ -162,7 +159,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .article {
   text-align: left;
   flex-wrap: nowrap;
@@ -216,6 +213,7 @@ export default {
     float: right;
   }
   .content {
+    margin-top: 20px;
     padding-bottom: 20px;
     border-top: 1px solid $color-border;
     border-bottom: 1px solid $color-border;

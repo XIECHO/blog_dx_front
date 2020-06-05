@@ -5,6 +5,8 @@ import store from "./store";
 import "./icons";
 Vue.config.productionTip = false;
 
+import "@/assets/css/md2html.scss";
+
 new Vue({
   router,
   store,
