@@ -40,6 +40,7 @@ const Message = function(options) {
 const types = ["success", "warning", "info", "error"];
 
 types.forEach(type => {
+  console.log("nihao");
   Message[type] = options => {
     if (typeof options === "string") {
       options = {

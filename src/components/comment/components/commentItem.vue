@@ -77,7 +77,7 @@ export default {
   },
   computed: {
     isRemoveShow() {
-      return this.$store.state.userInfo.id === 22365301;
+      return this.$store.state.userInfo.id == 46521779;
     }
   },
   methods: {

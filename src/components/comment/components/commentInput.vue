@@ -106,7 +106,6 @@ export default {
       requestFn(commentData)
         .then(() => {
           console.log(requestFn);
-          console.log("nihoa");
           this.$Message.success("评论成功！");
           // 清空输入框 触发输入框失焦事件
           this.commentValue = "";

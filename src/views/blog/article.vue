@@ -40,21 +40,25 @@
       <!--其他-->
       <div class="more clearfix">
         <div v-if="prev" class="more-item more-prev">
-          <router-link
-            :to="{ name: 'article', params: { articleId: prev._id } }"
-            replace
-          >
-            上一篇：{{ prev.title }}
-          </router-link>
+          <template v-if="prev._id">
+            <router-link
+              :to="{ name: 'article', params: { articleId: prev._id } }"
+              replace
+            >
+              上一篇：{{ prev.title }}
+            </router-link>
+          </template>
         </div>
 
         <div v-if="next" class="more-item more-next">
-          <router-link
-            :to="{ name: 'article', params: { articleId: next._id } }"
-            replace
-          >
-            下一篇：{{ next.title }}
-          </router-link>
+          <template v-if="next._id">
+            <router-link
+              :to="{ name: 'article', params: { articleId: next._id } }"
+              replace
+            >
+              下一篇：{{ next.title }}
+            </router-link>
+          </template>
         </div>
       </div>
       <!--评论-->
