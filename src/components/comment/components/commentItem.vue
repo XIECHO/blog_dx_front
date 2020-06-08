@@ -30,7 +30,6 @@
           v-if="isShowInput"
           :current-follow-id="comment.follow_id || comment._id"
           :current-follow-user="comment.user"
-          @hideInput="hideInput"
           @getComments="getComments"
         />
       </div>
@@ -78,7 +77,7 @@ export default {
   },
   computed: {
     isRemoveShow() {
-      return this.$store.state.userInfo.id === 35567374;
+      return this.$store.state.userInfo.id === 22365301;
     }
   },
   methods: {
@@ -107,13 +106,10 @@ export default {
           this.$Message.error(e.msg || "删除失败");
         });
     },
-    // 移除输入框
-    hideInput() {
-      this.isShowInput = false;
-    },
     // 传递 getComments
     getComments() {
       this.$emit("getComments");
+      this.isShowInput = false;
     }
   }
 };

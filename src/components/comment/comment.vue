@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { GetComment } from "@/api/comment";
+import { GetComments } from "@/api/comment";
 import commentInput from "./components/commentInput";
 import commentItem from "./components/commentItem";
 
@@ -42,16 +42,14 @@ export default {
   },
   data() {
     return {
-      comments: [],
-      currentFollowId: "",
-      showFollowInput: {}
+      comments: []
     };
   },
   methods: {
     // 获取评论
     getComments() {
-      GetComment(this.articleId).then(res => {
-        this.comments = res;
+      GetComments(this.articleId).then(res => {
+        this.comments = res.data.resData.list;
       });
     }
   }

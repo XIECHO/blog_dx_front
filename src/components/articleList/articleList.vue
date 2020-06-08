@@ -29,7 +29,7 @@
           <svg-icon icon-class="tag" class-name="icon" />
           <router-link
             class="text"
-            :to="{ name: 'tagArchived', params: { tag: tag } }"
+            :to="{ name: 'tagArchive', params: { tag: tag } }"
           >
             {{ tag }}
           </router-link>

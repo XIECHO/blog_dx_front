@@ -1,6 +1,6 @@
 import service from "@/utils/request";
 
-export function GetComment(id) {
+export function GetComments(id) {
   return service.request({
     url: `/comment/get_comments?article_id=${id}`,
     method: "get"

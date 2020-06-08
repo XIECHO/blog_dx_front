@@ -7,7 +7,7 @@
 <script>
 import timeLine from "@/components/timeLine/timeLine";
 export default {
-  name: "TagArchived",
+  name: "TagArchive",
   components: {
     timeLine
   },

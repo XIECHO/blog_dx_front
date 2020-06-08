@@ -56,26 +56,39 @@ export default {
   },
   data() {
     return {
-      commentValue: "",
-      isLogin: false
+      commentValue: ""
     };
   },
-  mounted() {
-    if (this.currentFollowId) {
-      this.$refs.inputTextarea.focus();
+  computed: {
+    isLogin() {
+      return this.$store.state.isLogin;
     }
   },
   methods: {
-    login() {},
+    login() {
+      window.open(
+        "https://github.com/login/oauth/authorize?client_id=d210070a995bece153d1&scope=user:email",
+        "oauthPage",
+        "height=500,width=600"
+      );
+      window.addEventListener("storage", this.handleStorageListener);
+    },
+    handleStorageListener({ key, newValue }) {
+      if (key !== "_login") {
+        return;
+      }
+      const login = JSON.parse(newValue);
+      const data = login.data;
+      this.$store.dispatch("updateIsLogin", true);
+      this.$store.dispatch("updateUserInfo", data);
+      window.removeEventListener("storage", this.handleStorageListener);
+    },
     // 发表一级评论
     newCommentClick() {
       const userInfo = this.$store.state.userInfo;
-      if (!userInfo.id) {
-        this.$store.dispatch("uodateIsLoginModalShow", true);
-        return;
-      }
+      console.log(userInfo);
       const commentData = {
-        user: userInfo.name,
+        user: userInfo.login,
         avatar_url: userInfo.avatar_url,
         comment_content: this.commentValue
       };
@@ -92,10 +105,11 @@ export default {
       }
       requestFn(commentData)
         .then(() => {
+          console.log(requestFn);
+          console.log("nihoa");
           this.$Message.success("评论成功！");
           // 清空输入框 触发输入框失焦事件
           this.commentValue = "";
-          this.textareaBlur();
           this.$emit("getComments");
         })
         .catch(() => {

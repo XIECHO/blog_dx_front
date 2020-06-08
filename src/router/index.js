@@ -72,6 +72,14 @@ const router = new VueRouter({
       children: childRoutes
     },
     {
+      path: "/login",
+      name: "login",
+      component: () => import("@/views/login/login"),
+      meta: {
+        title: "第三方登录"
+      }
+    },
+    {
       path: "*",
       component: () => import("@/views/page404"),
       meta: {
